@@ -1,6 +1,11 @@
-var connect = require('connect');
-var serveStatic = require('serve-static');
-
-connect()
-    .use(serveStatic(__dirname))
-    .listen(3001, () => console.log('Server running on 3001...'));
+var express      = require('express');
+var app          = express();
+var path = require('path');
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
+var server = app.listen(3456, function () {
+    var host = server.address().address;
+    var port = server.address().port;
+    console.log('running at http://' + host + ':' + port)
+});
